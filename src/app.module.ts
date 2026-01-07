@@ -27,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
         ssl: config.get('DB_SSL') === 'true'
           ? { rejectUnauthorized: false }
           : false,
-        synchronize: false, // VERY IMPORTANT (never true in production)
+        synchronize: true, // VERY IMPORTANT (never true in production)
         autoLoadEntities: true,
       }),
     }),
