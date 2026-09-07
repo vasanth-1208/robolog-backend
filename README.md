@@ -1,98 +1,326 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# RoboLog Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend API for **RoboLog**, built with NestJS and designed with a modular architecture for authentication, user management, and persistent data storage.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Overview
 
-## Description
+RoboLog Backend provides the server-side foundation for the RoboLog application.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+It is responsible for:
 
-## Project setup
+* User authentication
+* User management
+* Secure password handling
+* Database connectivity
+* REST API endpoints
+* Application configuration
+* Automated testing
 
-```bash
-$ npm install
+The backend follows a modular NestJS architecture that makes the application easier to maintain, extend, and integrate with a frontend client.
+
+## ✨ Key Features
+
+### 🔐 Authentication
+
+* User authentication module
+* Secure password hashing using bcrypt
+* Authentication service and controller
+* User-related data management
+
+### 👤 User Management
+
+* User entity and persistence layer
+* Structured user module
+* Database-backed user information
+
+### 🗄️ Database Integration
+
+The backend uses:
+
+* **PostgreSQL** as the relational database
+* **TypeORM** for database access and entity management
+
+### ⚙️ Configuration
+
+Application configuration is managed through the NestJS configuration system, allowing environment-specific settings without hardcoding sensitive configuration values.
+
+### 🧪 Testing
+
+The project includes:
+
+* Unit tests
+* End-to-end tests
+* Jest test configuration
+* Test coverage support
+
+## 🏗️ Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │   Frontend Client   │
+                    └──────────┬──────────┘
+                               │
+                               │ HTTP / REST API
+                               ▼
+                    ┌─────────────────────┐
+                    │    NestJS Backend   │
+                    └──────────┬──────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+        ┌──────────┐     ┌──────────┐    ┌────────────┐
+        │   Auth   │     │  Users   │    │  Config    │
+        │  Module  │     │  Module  │    │  Module    │
+        └────┬─────┘     └────┬─────┘    └────────────┘
+             │                │
+             └────────┬───────┘
+                      ▼
+                ┌────────────┐
+                │  TypeORM   │
+                └─────┬──────┘
+                      ▼
+                ┌────────────┐
+                │ PostgreSQL │
+                └────────────┘
 ```
 
-## Compile and run the project
+## 🔄 Request Flow
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```text
+Client Request
+      │
+      ▼
+NestJS Controller
+      │
+      ▼
+Service Layer
+      │
+      ▼
+TypeORM
+      │
+      ▼
+PostgreSQL
+      │
+      ▼
+API Response
 ```
 
-## Run tests
+## 🛠️ Technology Stack
 
-```bash
-# unit tests
-$ npm run test
+| Technology | Purpose                 |
+| ---------- | ----------------------- |
+| NestJS     | Backend framework       |
+| TypeScript | Application development |
+| Node.js    | Runtime environment     |
+| PostgreSQL | Relational database     |
+| TypeORM    | ORM / database access   |
+| bcrypt     | Password hashing        |
+| Jest       | Unit testing            |
+| Supertest  | API / E2E testing       |
+| ESLint     | Code quality            |
+| Prettier   | Code formatting         |
 
-# e2e tests
-$ npm run test:e2e
+The current project dependencies confirm NestJS 11, TypeORM, PostgreSQL (`pg`), bcrypt, configuration support, Jest, Supertest, ESLint, and TypeScript.
 
-# test coverage
-$ npm run test:cov
+## 📁 Project Structure
+
+```text
+robolog-backend/
+│
+├── src/
+│   ├── auth/
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── auth.module.ts
+│   │   └── *.spec.ts
+│   │
+│   ├── users/
+│   │   └── user.entity.ts
+│   │
+│   ├── app.controller.ts
+│   ├── app.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+│
+├── test/
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+│
+├── .gitignore
+├── .prettierrc
+├── eslint.config.mjs
+├── nest-cli.json
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── tsconfig.build.json
 ```
 
-## Deployment
+The repository currently follows this modular structure, including separate `auth` and `users` areas and dedicated unit/E2E test files.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## ⚙️ Installation
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1. Clone the repository
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://github.com/vasanth-1208/robolog-backend.git
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2. Navigate to the project
 
-## Resources
+```bash
+cd robolog-backend
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 3. Install dependencies
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm install
+```
 
-## Support
+## 🔑 Environment Configuration
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Create a `.env` file in the project root and configure the required database and application settings.
 
-## Stay in touch
+Example:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```env
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=postgres
+DATABASE_PASSWORD=your_password
+DATABASE_NAME=robolog
+```
 
-## License
+> Do not commit real passwords, API keys, database credentials, or other secrets to GitHub.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🗄️ PostgreSQL Setup
+
+Create a PostgreSQL database for the application.
+
+Example:
+
+```sql
+CREATE DATABASE robolog;
+```
+
+Then configure the database connection through environment variables.
+
+## ▶️ Running the Application
+
+### Development
+
+```bash
+npm run start:dev
+```
+
+### Standard start
+
+```bash
+npm run start
+```
+
+### Production
+
+```bash
+npm run build
+npm run start:prod
+```
+
+## 🧪 Testing
+
+### Unit tests
+
+```bash
+npm run test
+```
+
+### Watch mode
+
+```bash
+npm run test:watch
+```
+
+### End-to-end tests
+
+```bash
+npm run test:e2e
+```
+
+### Test coverage
+
+```bash
+npm run test:cov
+```
+
+The available scripts include build, development, production, linting, unit testing, coverage, and E2E testing.
+
+## 🔒 Security
+
+The backend uses bcrypt for secure password hashing.
+
+Recommended production practices include:
+
+* Store secrets in environment variables
+* Never commit `.env` files
+* Use strong database credentials
+* Validate incoming API data
+* Use HTTPS in production
+* Implement proper authentication guards
+* Apply authorization where required
+* Configure CORS for trusted frontend origins
+* Avoid exposing sensitive error information
+
+## 🧩 Backend Modules
+
+### Auth Module
+
+Responsible for authentication-related functionality and communication between authentication controllers and services.
+
+### Users Module
+
+Provides the user entity and the persistence model used by the application.
+
+### Application Module
+
+Acts as the root module that connects the application's modules and dependencies.
+
+## 📈 Future Enhancements
+
+Potential improvements include:
+
+* JWT-based authentication
+* Refresh-token support
+* Role-based access control
+* DTO validation with `class-validator`
+* Authentication guards
+* API documentation with Swagger
+* User profile management
+* Request logging
+* Rate limiting
+* Global exception handling
+* Docker support
+* CI/CD pipeline
+* Production monitoring
+* Database migrations
+* API versioning
+
+## 📌 Project Status
+
+**Status:** Backend foundation / Active Development
+
+The repository currently provides a NestJS backend foundation with authentication and user-related modules, PostgreSQL/TypeORM integration, and automated testing infrastructure.
+
+## 👨‍💻 Author
+
+**VASANTHARAJ M**
+
+B.E. Computer Science & Engineering
+Bannari Amman Institute of Technology
+
+GitHub: `vasanth-1208`
+
+## 📄 License
+
+This project is currently maintained as a private-development codebase and does not currently declare an open-source license.
